@@ -37,6 +37,15 @@ const DevOpsPortfolio = () => {
   const [typedText, setTypedText] = useState('');
   const typingInterval = useRef<NodeJS.Timeout | null>(null);
 
+// somewhere in your useEffect or handler:
+if (typingInterval.current) {
+  clearInterval(typingInterval.current);
+}
+typingInterval.current = setInterval(() => {
+  // your animation logic...
+}, 100);
+
+
 
   const fullText = "Hi, I'm Haqqi Kieyv";
   const sections = [
