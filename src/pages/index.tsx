@@ -23,7 +23,7 @@ const SkillsKeyboard = () => {
   return (
     <div className="flex justify-center items-center w-full h-80 mb-8">
       <img
-        src="/your-image.jpg" // Place your image in the public folder and update the filename here
+        src="/p2.jpg" // Place your image in the public folder and update the filename here
         alt="Skills Logo"
         className="max-h-full max-w-full object-contain rounded-lg shadow-lg border-4 border-neon"
       />
@@ -37,7 +37,7 @@ const DevOpsPortfolio = () => {
   const [typedText, setTypedText] = useState('');
   const typingInterval = useRef<NodeJS.Timeout>();
 
-  const fullText = "Hi, I'm John Doe";
+  const fullText = "Hi, I'm Haqqi Kieyv";
   const sections = [
     { id: 'home', name: 'Home' },
     { id: 'about', name: 'About' },
@@ -258,7 +258,7 @@ const DevOpsPortfolio = () => {
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
                 <img
-                  src="https://placehold.co/600x600"
+                  src="/p1.png"
                   alt="Professional headshot of DevOps engineer in business casual attire with futuristic digital background elements"
                   className="rounded-lg shadow-2xl border-4 border-neon border-opacity-30 w-full max-w-md mx-auto"
                 />
@@ -309,7 +309,7 @@ const DevOpsPortfolio = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.5 }}
               >
-                Senior DevOps Engineer & Cloud Architect
+                Mobile Legends: Professional Jungler
               </motion.h2>
               
               <motion.p 
@@ -318,8 +318,11 @@ const DevOpsPortfolio = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.8 }}
               >
-                I design, build, and maintain highly available, scalable, and secure cloud infrastructure. 
-                With 8+ years of experience automating deployments and optimizing development workflows.
+                As a long-time Mobile Legends player specializing as a Jungler, 
+                I’ve developed a deep understanding of strategy, map control, and high-pressure decision-making. 
+                Being responsible for objectives like Turtle, Lord, and early-game tempo requires not only fast hands, 
+                but also a sharp mind and clear communication. I treat every match like a mission—high focus, 
+                efficient pathing, and always two steps ahead.
               </motion.p>
               
               <motion.div 
@@ -426,7 +429,7 @@ const DevOpsPortfolio = () => {
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
                 <img
-                  src="https://placehold.co/800x500" 
+                  src="/p3.jpg" 
                   alt="Infrastructure diagram showing cloud architecture with servers, databases and networking components connected with neon lines"
                   className="rounded-lg shadow-xl w-full"
                 />
@@ -445,16 +448,17 @@ const DevOpsPortfolio = () => {
               data-aos-delay="300"
             >
               <h3 className="text-2xl font-bold mb-6 text-white">
-                Infrastructure Specialist with a Passion for Automation
+                Mobile Legends: Bang Bang – Champion & MVP Performer
               </h3>
               <p className="text-gray-400 mb-4">
-                As a certified AWS Solutions Architect and Kubernetes Administrator, I've helped organizations 
-                transition from traditional infrastructure to modern cloud-native solutions. My approach combines 
-                technical expertise with business acumen to deliver cost-effective, high-performance solutions.
+                🥇 1st Place, M7 World Champions (2024)
+                  Led my team to victory in a competitive 5v5 tournament, 
+                  showcasing strong leadership and mechanical skills as the team’s primary Jungler.
               </p>
               <p className="text-gray-400 mb-6">
-                I specialize in building CI/CD pipelines, infrastructure as code implementations, and SRE practices 
-                that improve system reliability while reducing operational overhead.
+                👑 MVP Award, Finals Match – 2024
+                Earned MVP title in the grand final for consistently securing objectives, dominating map presence, 
+                and executing clutch plays during high-stakes moments.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -532,35 +536,25 @@ const DevOpsPortfolio = () => {
           <div className="w-full max-w-xl h-80 mb-8">
             <SkillsKeyboard />
           </div>
-          <div className="w-full max-w-2xl space-y-6">
+          {/* Modern Skills List */}
+          <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6">
             {techStack.map((skill, index) => (
-              <motion.div 
-                key={index} 
-                className="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-neon transition-all duration-500 hover:shadow-lg hover:shadow-neon/10 group"
+              <motion.div
+                key={index}
+                className={`flex flex-col items-start bg-gray-900 p-6 rounded-lg border border-gray-800 group transition-all duration-300 hover:border-neon ${
+                  skill.level >= 90 ? 'shadow-lg shadow-neon/10 border-neon' : ''
+                }`}
                 data-aos="fade-up"
                 data-aos-delay={200 + (index * 50)}
                 whileHover={{ y: -5 }}
               >
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-xl font-bold text-neon group-hover:text-white transition-colors duration-300">
-                    {skill.name}
-                  </h3>
-                  <span className="text-gray-400 group-hover:text-white transition-colors duration-300">
-                    {skill.level}%
-                  </span>
+                <div className="flex items-center mb-2">
+                  <span className="text-neon font-bold text-lg mr-2">{skill.name}</span>
+                  {skill.level >= 90 && (
+                    <span className="ml-1 px-2 py-0.5 text-xs rounded-full bg-neon text-black font-semibold">Expert</span>
+                  )}
                 </div>
-                <p className="text-gray-400 mb-4 group-hover:text-white transition-colors duration-300">
-                  {skill.category}
-                </p>
-                <div className="w-full bg-gray-800 rounded-full h-2.5 overflow-hidden">
-                  <motion.div 
-                    className="bg-neon h-2.5 rounded-full" 
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                  />
-                </div>
+                <span className="text-gray-400 text-sm">{skill.category}</span>
               </motion.div>
             ))}
           </div>
