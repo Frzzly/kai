@@ -35,7 +35,7 @@ const DevOpsPortfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const typingInterval = useRef<NodeJS.Timeout>();
+  const something = useRef<T | null>(null); // ✅ CLEAR
 
   const fullText = "Hi, I'm Haqqi Kieyv";
   const sections = [
