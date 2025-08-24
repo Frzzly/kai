@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Html, useGLTF } from '@react-three/drei';
-import * as THREE from 'three';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -13,61 +12,54 @@ const SilentAshModel = () => {
   return <primitive object={scene} scale={10} position={[0, -10, 0]} />;
 };
 
-const Logo3DModel = () => {
-  const { scene } = useGLTF('/logo-3d.glb'); // Place your logo model in /public/logo-3d.glb
-  return <primitive object={scene} scale={10} position={[0, 0, 0]} />;
-};
-
-// Skills Keyboard Component (now shows logo)
 const SkillsKeyboard = () => {
   return (
     <div className="flex justify-center items-center w-full h-80 mb-8">
       <img
-        src="/p2.jpg" // Place your image in the public folder and update the filename here
-        alt="Skills Logo"
+        src="/p2.jpg"
+        alt="MLBB Hero Montage"
         className="max-h-full max-w-full object-contain rounded-lg shadow-lg border-4 border-neon"
       />
     </div>
   );
 };
 
-const DevOpsPortfolio = () => {
+const MLBBPortfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [typedText, setTypedText] = useState('');
   const typingInterval = useRef<NodeJS.Timeout | null>(null);
 
-
-
-
-  const fullText = "Hi, I'm Haqqi Kieyv";
+  const fullText = "Hi, I'm Haqqi.";
   const sections = [
     { id: 'home', name: 'Home' },
     { id: 'about', name: 'About' },
     { id: 'skills', name: 'Skills' },
-    { id: 'projects', name: 'Projects' },
+    { id: 'projects', name: 'Highlights' },
     { id: 'contact', name: 'Contact' }
   ];
 
+  // MLBB-specific skills
   const techStack = [
-    { name: 'Kubernetes', category: 'Container Orchestration', level: 90 },
-    { name: 'Docker', category: 'Containerization', level: 95 },
-    { name: 'Terraform', category: 'Infrastructure as Code', level: 85 },
-    { name: 'AWS', category: 'Cloud Platform', level: 88 },
-    { name: 'CI/CD Pipelines', category: 'Automation', level: 92 },
-    { name: 'Prometheus/Grafana', category: 'Monitoring', level: 80 },
+    { name: 'Jungle Pathing', category: 'Macro Strategy', level: 95 },
+    { name: 'Objective Control', category: 'Turtle/Lord/Secure', level: 98 },
+    { name: 'Hero Pool', category: 'Ling, Lancelot, Fanny, Hayabusa', level: 92 },
+    { name: 'Shotcalling', category: 'Team Leadership', level: 90 },
+    { name: 'Counter-Jungling', category: 'Invade/Steal', level: 93 },
+    { name: 'Map Awareness', category: 'Vision & Rotation', level: 96 },
   ];
 
+  // MLBB highlights/projects
   const projects = [
     {
-      title: 'Cloud Migration Project',
-      description: 'Led migration of 50+ services to Kubernetes on AWS with zero downtime',
-      tags: ['AWS', 'Kubernetes', 'Terraform']
+      title: 'M7 World Championship',
+      description: 'Led my team to victory as Jungler, securing MVP in the finals and dominating objectives throughout the tournament.',
+      tags: ['Champion', 'MVP', 'Jungler']
     },
     {
-      title: 'CI/CD Pipeline', 
-      description: 'Designed and implemented automated deployment pipeline reducing release time by 80%',
-      tags: ['Jenkins', 'Docker', 'Helm']
+      title: 'National Esports League',
+      description: 'Achieved 1st place with a flawless playoff run, known for aggressive counter-jungling and clutch Lord steals.',
+      tags: ['Counter-Jungle', 'Team Captain', 'Clutch Plays']
     }
   ];
 
@@ -80,9 +72,8 @@ const DevOpsPortfolio = () => {
         i++;
       } else {
         if (typingInterval.current !== null) {
-  clearInterval(typingInterval.current);
-}
-
+          clearInterval(typingInterval.current);
+        }
       }
     }, 100);
 
@@ -121,8 +112,8 @@ const DevOpsPortfolio = () => {
   return (
     <div className="min-h-screen bg-black text-gray-100 font-sans overflow-x-hidden">
       <Head>
-        <title>Professional DevOps Portfolio</title>
-        <meta name="description" content="Senior DevOps Engineer specializing in cloud infrastructure and automation" />
+        <title>Professional MLBB Jungler Portfolio</title>
+        <meta name="description" content="Haqqi Kieyv | MLBB World Champion Jungler & MVP" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -132,7 +123,7 @@ const DevOpsPortfolio = () => {
                   colors: { 
                     dark: '#0a0a0a',
                     neon: '#39FF14',
-                    'neon-light': '#66ff66', // Added lighter neon green
+                    'neon-light': '#66ff66',
                   },
                   fontFamily: {
                     sans: ['Inter', 'sans-serif'],
@@ -159,10 +150,8 @@ const DevOpsPortfolio = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <span className="text-neon font-mono text-xl font-bold tracking-tight">DEVOPS</span>
+              <span className="text-neon font-mono text-xl font-bold tracking-tight">MLBB JUNGLER</span>
             </div>
-            
-            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {sections.map(section => (
                 <a
@@ -182,8 +171,6 @@ const DevOpsPortfolio = () => {
                 </a>
               ))}
             </div>
-            
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -200,8 +187,6 @@ const DevOpsPortfolio = () => {
             </div>
           </div>
         </div>
-        
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
@@ -264,8 +249,8 @@ const DevOpsPortfolio = () => {
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
                 <img
-                  src="/p1.png"
-                  alt="Professional headshot of DevOps engineer in business casual attire with futuristic digital background elements"
+                  src="/p1.jpg"
+                  alt="Haqqi Kieyv MLBB Jungler"
                   className="rounded-lg shadow-2xl border-4 border-neon border-opacity-30 w-full max-w-md mx-auto"
                 />
                 <motion.div 
@@ -315,7 +300,7 @@ const DevOpsPortfolio = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.5 }}
               >
-                Mobile Legends: Professional Jungler
+                MLBB World Champion & MVP Jungler
               </motion.h2>
               
               <motion.p 
@@ -324,11 +309,7 @@ const DevOpsPortfolio = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.8 }}
               >
-                As a long-time Mobile Legends player specializing as a Jungler, 
-                I’ve developed a deep understanding of strategy, map control, and high-pressure decision-making. 
-                Being responsible for objectives like Turtle, Lord, and early-game tempo requires not only fast hands, 
-                but also a sharp mind and clear communication. I treat every match like a mission—high focus, 
-                efficient pathing, and always two steps ahead.
+                As a professional Mobile Legends Jungler, I specialize in controlling objectives, leading rotations, and executing clutch plays under pressure. My journey includes world championship titles, MVP awards, and a reputation for strategic dominance in the jungle.
               </motion.p>
               
               <motion.div 
@@ -351,7 +332,7 @@ const DevOpsPortfolio = () => {
                   whileHover={{ y: -3, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  View Projects
+                  View Highlights
                 </motion.a>
               </motion.div>
             </motion.div>
@@ -436,7 +417,7 @@ const DevOpsPortfolio = () => {
               >
                 <img
                   src="/p3.jpg" 
-                  alt="Infrastructure diagram showing cloud architecture with servers, databases and networking components connected with neon lines"
+                  alt="MLBB Tournament Victory"
                   className="rounded-lg shadow-xl w-full"
                 />
                 <motion.div 
@@ -454,15 +435,15 @@ const DevOpsPortfolio = () => {
               data-aos-delay="300"
             >
               <h3 className="text-2xl font-bold mb-6 text-white">
-                Mobile Legends: Bang Bang – Champion & MVP Performer
+                MLBB – World Champion & MVP Performer
               </h3>
               <p className="text-gray-400 mb-4">
-                🥇 1st Place, M7 World Champions (2024)
-                  Led my team to victory in a competitive 5v5 tournament, 
-                  showcasing strong leadership and mechanical skills as the team’s primary Jungler.
+                🥇 1st Place, M7 World Champions (2024)<br />
+                Led my team to victory in a competitive 5v5 tournament, 
+                showcasing strong leadership and mechanical skills as the team’s primary Jungler.
               </p>
               <p className="text-gray-400 mb-6">
-                👑 MVP Award, Finals Match – 2024
+                👑 MVP Award, Finals Match – 2024<br />
                 Earned MVP title in the grand final for consistently securing objectives, dominating map presence, 
                 and executing clutch plays during high-stakes moments.
               </p>
@@ -473,8 +454,8 @@ const DevOpsPortfolio = () => {
                   whileHover={{ x: 5 }}
                 >
                   <h4 className="text-neon font-medium mb-2">Education</h4>
-                  <p className="text-gray-400">MS in Computer Science</p>
-                  <p className="text-gray-400">Stanford University, 2014</p>
+                  <p className="text-gray-400">BS in Esports Management</p>
+                  <p className="text-gray-400">National Esports University, 2022</p>
                 </motion.div>
                 
                 <motion.div 
@@ -482,8 +463,8 @@ const DevOpsPortfolio = () => {
                   whileHover={{ x: 5 }}
                 >
                   <h4 className="text-neon font-medium mb-2">Certifications</h4>
-                  <p className="text-gray-400">AWS Certified Solutions Architect</p>
-                  <p className="text-gray-400">CKA, CKAD, Terraform Certified</p>
+                  <p className="text-gray-400">MLBB Pro League Certified</p>
+                  <p className="text-gray-400">Esports Coaching License</p>
                 </motion.div>
               </div>
               
@@ -522,7 +503,7 @@ const DevOpsPortfolio = () => {
           </div>
         </div>
         <p className="text-gray-400 max-w-2xl text-center">
-          Explore my signature 3D model, representing innovation and technical depth in DevOps and cloud engineering. This interactive visualization demonstrates my passion for blending technology and creativity.
+          Explore my signature 3D model, representing my journey and achievements as a professional MLBB Jungler. This interactive visualization is a tribute to the strategic depth and creativity required at the highest level of play.
         </p>
       </section>
 
@@ -536,7 +517,7 @@ const DevOpsPortfolio = () => {
           data-aos="fade-down"
           data-aos-delay="100"
         >
-          <span className="text-neon">Technical</span> <span className="text-white">Skills</span>
+          <span className="text-neon">MLBB</span> <span className="text-white">Skills</span>
         </motion.h2>
         <div className="w-full flex flex-col items-center gap-12">
           <div className="w-full max-w-xl h-80 mb-8">
@@ -548,7 +529,7 @@ const DevOpsPortfolio = () => {
               <motion.div
                 key={index}
                 className={`flex flex-col items-start bg-gray-900 p-6 rounded-lg border border-gray-800 group transition-all duration-300 hover:border-neon ${
-                  skill.level >= 90 ? 'shadow-lg shadow-neon/10 border-neon' : ''
+                  skill.level >= 95 ? 'shadow-lg shadow-neon/10 border-neon' : ''
                 }`}
                 data-aos="fade-up"
                 data-aos-delay={200 + (index * 50)}
@@ -556,8 +537,8 @@ const DevOpsPortfolio = () => {
               >
                 <div className="flex items-center mb-2">
                   <span className="text-neon font-bold text-lg mr-2">{skill.name}</span>
-                  {skill.level >= 90 && (
-                    <span className="ml-1 px-2 py-0.5 text-xs rounded-full bg-neon text-black font-semibold">Expert</span>
+                  {skill.level >= 95 && (
+                    <span className="ml-1 px-2 py-0.5 text-xs rounded-full bg-neon text-black font-semibold">Elite</span>
                   )}
                 </div>
                 <span className="text-gray-400 text-sm">{skill.category}</span>
@@ -567,7 +548,7 @@ const DevOpsPortfolio = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Highlights Section */}
       <section 
         id="projects" 
         className="py-20 bg-gray-900 relative overflow-hidden"
@@ -577,7 +558,7 @@ const DevOpsPortfolio = () => {
             className="text-3xl md:text-4xl font-bold mb-12 text-center"
             data-aos="fade-down"
           >
-            <span className="text-neon">Recent</span> <span className="text-white">Projects</span>
+            <span className="text-neon">Tournament</span> <span className="text-white">Highlights</span>
           </motion.h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -595,7 +576,7 @@ const DevOpsPortfolio = () => {
                 
                 <motion.img
                   src="https://placehold.co/800x450" 
-                  alt={`Project screenshot showing ${project.title} implementation with infrastructure diagram`}
+                  alt={`MLBB highlight for ${project.title}`}
                   className="w-full h-48 object-cover rounded-t-lg mb-6 transform transition-all duration-500 group-hover:scale-105"
                 />
                 
@@ -625,7 +606,7 @@ const DevOpsPortfolio = () => {
                   className="inline-flex items-center text-neon hover:text-white transition-all duration-300 text-sm group/view"
                 >
                   <span className="mr-1 group-hover/view:mr-2 transition-all duration-300">
-                    View Case Study
+                    View Highlight
                   </span>
                   <svg 
                     className="w-4 h-4 transition-transform duration-300 group-hover/view:translate-x-1" 
@@ -667,8 +648,7 @@ const DevOpsPortfolio = () => {
             >
               <h3 className="text-2xl font-bold mb-6 text-white">Contact Information</h3>
               <p className="text-gray-400 mb-8">
-                Have a project in mind or want to discuss potential opportunities? 
-                Feel free to reach out - I'd love to hear from you!
+                Want to collaborate, join my team, or discuss MLBB strategies? Reach out and let’s connect!
               </p>
               
               <div className="space-y-6">
@@ -730,7 +710,7 @@ const DevOpsPortfolio = () => {
                   </div>
                   <div>
                     <h4 className="text-gray-400 mb-1">Location</h4>
-                    <p className="text-white">San Francisco, CA</p>
+                    <p className="text-white">Jakarta, Indonesia</p>
                   </div>
                 </motion.div>
               </div>
@@ -742,7 +722,7 @@ const DevOpsPortfolio = () => {
               >
                 <h4 className="text-xl font-bold mb-4 text-white">Connect With Me</h4>
                 <div className="flex space-x-4">
-                  {['github', 'linkedin', 'twitter'].map((social, i) => (
+                  {['instagram', 'youtube', 'tiktok'].map((social, i) => (
                     <motion.a 
                       key={social}
                       href="#" 
@@ -858,18 +838,18 @@ const DevOpsPortfolio = () => {
               whileHover={{ scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
-              DEVOPS ENGINEER
+              MLBB JUNGLER
             </motion.span>
             
             <motion.p 
               className="text-gray-400 mt-2 mb-8 max-w-md mx-auto"
               whileHover={{ scale: 1.02 }}
             >
-              Building scalable, reliable, and efficient infrastructure solutions.
+              World Champion, MVP, and Elite Jungler. Always two steps ahead.
             </motion.p>
             
             <div className="flex justify-center space-x-6 mb-6">
-              {['github', 'linkedin', 'twitter', 'email'].map((social, i) => (
+              {['instagram', 'youtube', 'tiktok'].map((social, i) => (
                 <motion.a
                   key={social}
                   href="#"
@@ -880,9 +860,6 @@ const DevOpsPortfolio = () => {
                   data-aos-delay={i * 100}
                 >
                   <span className="sr-only">{social}</span>
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" />
-                  </svg>
                 </motion.a>
               ))}
             </div>
@@ -891,7 +868,7 @@ const DevOpsPortfolio = () => {
               className="text-gray-500 text-sm"
               whileHover={{ scale: 1.02 }}
             >
-              © {new Date().getFullYear()} Professional DevOps Portfolio. All rights reserved.
+              © {new Date().getFullYear()} Haqqi Kieyv MLBB Portfolio. All rights reserved.
             </motion.p>
           </motion.div>
         </div>
@@ -915,4 +892,4 @@ const DevOpsPortfolio = () => {
   );
 };
 
-export default DevOpsPortfolio;
+export default MLBBPortfolio;
